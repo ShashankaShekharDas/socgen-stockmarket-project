@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
-interface StockRepository extends CrudRepository<StockExchange,Integer> {
+interface StockRepository extends CrudRepository<StockExchange,String> {
 }
 
 
@@ -36,9 +37,9 @@ public class ExchangeService {
         return save;
     }
 
-    public String getCompany(){
-        String url = "http://localhost:8081/user/getAllCompanies";
-        return this.restTemplate.getForObject(url,String.class);
+    public Optional<StockExchange> getCompany(String id)
+    {
+        return stockRepository.findById(id);
     }
 
 }

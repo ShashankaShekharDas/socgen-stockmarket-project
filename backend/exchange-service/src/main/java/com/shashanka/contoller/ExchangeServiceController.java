@@ -5,6 +5,8 @@ import com.shashanka.service.ExchangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RequestMapping("/admin")
 @RestController
 public class ExchangeServiceController {
@@ -34,8 +36,9 @@ public class ExchangeServiceController {
         return exchangeService.addStockExchange(stockExchange);
     }
 
-    @GetMapping("/getCompanies")
-    public String getCompanies(){
-        return exchangeService.getCompany();
+    @GetMapping("/getCompanies/{exchangeId}")
+    public Optional<StockExchange> getCompanies(@PathVariable String exchangeId)
+    {
+        return exchangeService.getCompany(exchangeId);
     }
 }

@@ -1,10 +1,9 @@
 package com.shashanka.dto;
 
 import javax.persistence.*;
-import com.shashanka.dto.Company;
 
 @Entity
-@Table(name = "BoardOfDirector")
+@Table(name = "Director")
 public class Director {
     @Id
     @GeneratedValue
@@ -12,7 +11,7 @@ public class Director {
 
 
     @ManyToOne
-    @JoinColumn(name = "name")
+    @JoinColumn(referencedColumnName = "name")
     private Company CompanyName;
 
 }

@@ -10,16 +10,22 @@ public class Company {
     @Id
     private String name;
 
-    private String turnover, ceo, listed, about;
+    private double turnover;
+
+    private String ceo, about;
+
+    boolean listed;
 
     public Company(){}
-    public Company(String name, String turnover, String ceo, String listed, String about) {
+
+    public Company(String name, double turnover, String ceo, String about, boolean listed) {
         this.name = name;
         this.turnover = turnover;
         this.ceo = ceo;
-        this.listed = listed;
         this.about = about;
+        this.listed = listed;
     }
+
     public String getName() {
         return name;
     }
@@ -28,11 +34,11 @@ public class Company {
         this.name = name;
     }
 
-    public String getTurnover() {
+    public double getTurnover() {
         return turnover;
     }
 
-    public void setTurnover(String turnover) {
+    public void setTurnover(double turnover) {
         this.turnover = turnover;
     }
 
@@ -44,19 +50,19 @@ public class Company {
         this.ceo = ceo;
     }
 
-    public String getListed() {
-        return listed;
-    }
-
-    public void setListed(String listed) {
-        this.listed = listed;
-    }
-
     public String getAbout() {
         return about;
     }
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    public boolean isListed() {
+        return listed;
+    }
+
+    public void setListed(boolean listed) {
+        this.listed = listed;
     }
 }
