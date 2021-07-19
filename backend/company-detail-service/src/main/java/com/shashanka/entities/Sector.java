@@ -1,5 +1,6 @@
-package com.shashanka.dto;
+package com.shashanka.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,10 +8,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "SECTOR")
 public class Sector {
+    @Column(length = 5)
     @Id
     private String Id;
 
-    private String name,about;
+    @Column(length = 20)
+    private String name;
+
+    @Column(length = 100)
+    private String about;
 
     public String getName() {
         return name;

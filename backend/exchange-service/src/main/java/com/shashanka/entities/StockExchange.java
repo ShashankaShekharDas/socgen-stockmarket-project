@@ -1,19 +1,25 @@
-package com.shashanka.dto;
+package com.shashanka.entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "STOCKEXCHANGE")
 @NamedQuery(name = "find_all_persons",query = "select exchange from StockExchange exchange")
 public class StockExchange {
 
+    @Column(length = 5)
     @Id
     private String id;
-    private String name,brief,remarks;
+
+    @Column(length = 20)
+    private String name;
+
+    @Column(length = 100)
+    private String brief;
+
+    @Column(length = 100)
+    private String remarks;
 
     public StockExchange(){
 
@@ -58,13 +64,4 @@ public class StockExchange {
         return remarks;
     }
 
-    @Override
-    public String toString() {
-        return "StockExchange{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", brief='" + brief + '\'' +
-                ", remarks='" + remarks + '\'' +
-                '}';
-    }
 }

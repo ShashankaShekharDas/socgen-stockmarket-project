@@ -1,5 +1,6 @@
-package com.shashanka.dto;
+package com.shashanka.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -7,12 +8,19 @@ import javax.persistence.Table;
 @Entity
 @Table(name="COMPANY")
 public class Company {
+
+    @Column(length = 30)
     @Id
     private String name;
 
+    @Column(precision = 15,scale = 2)
     private double turnover;
 
-    private String ceo, about;
+    @Column(length = 30)
+    private String ceo;
+
+    @Column(length = 200)
+    private String about;
 
     boolean listed;
 

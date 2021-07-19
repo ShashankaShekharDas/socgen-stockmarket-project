@@ -1,18 +1,15 @@
 package com.shashanka.service;
 
-import com.shashanka.dto.StockExchange;
+import com.shashanka.entities.StockExchange;
+import com.shashanka.repository.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
-
-interface StockRepository extends CrudRepository<StockExchange,String> {
-}
 
 
 @Repository

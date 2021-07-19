@@ -1,6 +1,7 @@
 package com.shashanka.controller;
 
-import com.shashanka.dto.Company;
+import com.shashanka.entities.Company;
+import com.shashanka.entities.Stock;
 import com.shashanka.service.CompanyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,24 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
 @RequestMapping("/user")
 @RestController
 public class CompanyDetailController {
-
-    /*
-        TODO
-        Microservice to retrieve data of a company, for certain period, getCompanyStockPrice i/p Company ID, From Period, To Period, periodicity )
-        ( /user/viewCompany/charts/{companyId}/{period}/{periodicity} )
-
-        Periodicity Options : 5 min to 1 hr
-        Period : 
-        getMatchingCompanies – used to retrieve list of Companies based on pattern matching of Company Name
-        ( /user/viewCompany/{pattern} )
-        getCompanyIPODetails – IPODetails of Company : Depends on IPO Implementation
-        ( /user/viewIPO/{companyId} )
-     */
 
     @Autowired
     CompanyDetailService companyDetailService;
@@ -36,7 +24,18 @@ public class CompanyDetailController {
     }
 
     @GetMapping("/company/data/{companyName}")
-    public Optional<Company> getCompanyData(@PathVariable String companyName){
-        return companyDetailService.getCompanyDetails(companyName);
+    public Company getCompanyData(@PathVariable String companyName){
+        return companyDetailService.getCompanyDetails(companyName).isPresent()?companyDetailService.getCompanyDetails(companyName).get():null;
+    }
+
+    @GetMapping("/viewCompany/charts/{companyId}/{exchangeID}/{periodFrom}/{periodTo}/{periodicity}")
+    public List<Stock> retrievePeriodData(@PathVariable String companyId,@PathVariable String exchangeID, @PathVariable String periodFrom, @PathVariable String  periodTo, @PathVariable int periodicity)
+    {
+        return companyDetailService.retrievePeriodData(companyId,exchangeID,periodFrom,periodTo,periodicity);
+    }
+
+    @GetMapping("/viewCompany/{pattern}")
+    public List<Company> getCompanyNames(@PathVariable String pattern){
+        return companyDetailService.getCompanyNames(pattern);
     }
 }

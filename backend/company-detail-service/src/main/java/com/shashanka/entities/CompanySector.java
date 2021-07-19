@@ -1,4 +1,4 @@
-package com.shashanka.dto;
+package com.shashanka.entities;
 
 import javax.persistence.*;
 
@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table(name = "COMPANYSECTOR")
 public class CompanySector {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "name")
