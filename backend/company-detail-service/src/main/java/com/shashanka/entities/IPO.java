@@ -36,13 +36,4 @@ public class IPO {
     @JoinColumn(referencedColumnName = "name")
     private Company companyName;
 
-//    public IPO(String id, double price, int countShares, LocalDateTime openingDateTime, String remarks, StockExchange exchangeId, Company name) {
-//        this.id = id;
-//        this.price = price;
-//        this.countShares = countShares;
-//        this.openingDateTime = openingDateTime;
-//        this.remarks = remarks;
-//        ExchangeId = exchangeId;
-//        this.name = name;
-//    }
 }
