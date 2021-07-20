@@ -1,5 +1,6 @@
 package com.shashanka.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Stock")
 public class Stock {
@@ -21,7 +23,7 @@ public class Stock {
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-    private StockExchange ExchangeId;
+    private StockExchange exchangeId;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "name")
@@ -34,7 +36,7 @@ public class Stock {
 
     public Stock(String companyCode, StockExchange exchangeId, double price, LocalDateTime dateTime) {
         this.companyCode = companyCode;
-        ExchangeId = exchangeId;
+        this.exchangeId = exchangeId;
         this.price = price;
         this.dateTime = dateTime;
     }

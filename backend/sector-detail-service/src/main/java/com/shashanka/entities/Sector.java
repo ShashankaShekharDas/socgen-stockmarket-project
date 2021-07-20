@@ -1,5 +1,6 @@
 package com.shashanka.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,23 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-@Entity
 @NoArgsConstructor
-@Table(name = "SECTOR")
+@AllArgsConstructor
+@Entity
+@Table(name = "Sector")
 public class Sector {
-    @Column(length = 5)
+
     @Id
-    private String Id;
+    @Column(length = 5)
+    private String id;
 
     @Column(length = 20)
     private String name;
 
     @Column(length = 100)
     private String about;
-
-    public Sector(String name, String about) {
-        this.name = name;
-        this.about = about;
-    }
 
 }
