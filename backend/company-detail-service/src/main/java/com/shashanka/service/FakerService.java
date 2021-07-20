@@ -2,8 +2,8 @@ package com.shashanka.service;
 
 import com.shashanka.entities.Stock;
 import com.shashanka.entities.StockExchange;
-import com.shashanka.repositories.StockExchangeRepository;
-import com.shashanka.repositories.StockRepository;
+import com.shashanka.dao.StockExchangeRepository;
+import com.shashanka.dao.StockRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

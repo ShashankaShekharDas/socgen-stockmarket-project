@@ -1,4 +1,4 @@
-package com.shashanka.repositories;
+package com.shashanka.dao;
 
 import com.shashanka.entities.StockExchange;
 import org.springframework.data.repository.CrudRepository;
