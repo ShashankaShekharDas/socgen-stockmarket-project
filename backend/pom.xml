@@ -48,6 +48,7 @@
         <module>exchange-service</module>
         <module>import-file-service</module>
         <module>sector-detail-service</module>
+        <module>eureka-service</module>
     </modules>
     <build>
         <plugins>
