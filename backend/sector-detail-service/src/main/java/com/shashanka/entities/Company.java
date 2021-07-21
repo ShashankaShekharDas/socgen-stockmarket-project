@@ -16,8 +16,10 @@ import javax.persistence.Table;
 @Table(name="COMPANY")
 public class Company {
 
-    @Column(length = 30)
     @Id
+    private Integer code;
+
+    @Column(length = 30)
     private String name;
 
     @Column(precision = 15,scale = 2)

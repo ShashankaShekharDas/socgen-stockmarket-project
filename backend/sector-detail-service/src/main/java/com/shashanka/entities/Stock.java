@@ -18,8 +18,7 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(length = 5)
-    private String companyCode;
+    private Integer companyCode;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
@@ -34,9 +33,10 @@ public class Stock {
 
     private LocalDateTime dateTime;
 
-    public Stock(String companyCode, StockExchange exchangeId, double price, LocalDateTime dateTime) {
+    public Stock(Integer companyCode, StockExchange exchangeId, Company companyName, double price, LocalDateTime dateTime) {
         this.companyCode = companyCode;
         this.exchangeId = exchangeId;
+        this.companyName = companyName;
         this.price = price;
         this.dateTime = dateTime;
     }

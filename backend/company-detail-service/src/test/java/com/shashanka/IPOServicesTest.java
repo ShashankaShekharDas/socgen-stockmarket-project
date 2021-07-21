@@ -1,9 +1,9 @@
 package com.shashanka;
 
 import com.shashanka.controller.IPOController;
-import com.shashanka.dao.CompanyRepository;
-import com.shashanka.dao.IPORepository;
-import com.shashanka.dao.StockExchangeRepository;
+import com.shashanka.repositories.CompanyRepository;
+import com.shashanka.repositories.IPORepository;
+import com.shashanka.repositories.StockExchangeRepository;
 import com.shashanka.dtos.IPO;
 import com.shashanka.dtos.IPOResponse;
 import com.shashanka.service.CompanyDetailService;
@@ -11,8 +11,6 @@ import com.shashanka.service.IPOService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;

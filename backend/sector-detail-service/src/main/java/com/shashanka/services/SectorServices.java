@@ -1,9 +1,9 @@
 package com.shashanka.services;
 
-import com.shashanka.dao.SectorRepository;
 import com.shashanka.dtos.CompanySectorDTO;
 import com.shashanka.dtos.StockDTO;
 import com.shashanka.entities.Sector;
+import com.shashanka.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

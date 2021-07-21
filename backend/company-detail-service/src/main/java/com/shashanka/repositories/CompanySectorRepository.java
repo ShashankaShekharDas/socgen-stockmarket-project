@@ -1,4 +1,4 @@
-package com.shashanka.dao;
+package com.shashanka.repositories;
 
 import com.shashanka.entities.CompanySector;
 import org.springframework.data.repository.CrudRepository;
