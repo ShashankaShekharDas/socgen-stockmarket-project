@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CompanyDetailService {
@@ -25,8 +24,10 @@ public class CompanyDetailService {
         return companyRepository.findAll();
     }
 
-    public Optional<Company> getCompanyDetails(String companyName){
-        return companyRepository.findById(companyName);
+    public List<Company> getCompanyDetails(String companyName){
+
+        String sql = "select * from company where name = ?";
+        return jdbcTemplate.query(sql,new Object[]{companyName},new BeanPropertyRowMapper<Company>(Company.class));
     }
 
     public List<Stock> retrievePeriodData(String companyId,String exchangeID, String periodFrom, String periodTo, int periodicity)

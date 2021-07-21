@@ -30,8 +30,8 @@ public class IPOService {
         IPOResponse ipoResponse = new IPOResponse();
         try {
 
-            com.shashanka.entities.IPO ipoDetails = new com.shashanka.entities.IPO(ipo.getId(), ipo.getPrice(), ipo.getCountShares(), ipo.getOpeningDateTime(), ipo.getRemarks(), stockExchangeRepository.findById(ipo.getExchangeId()).get(), companyRepository.findById(ipo.getCompanyName()).get());
-            Company companyIPO = companyRepository.findById(ipo.getCompanyName()).get();
+            com.shashanka.entities.IPO ipoDetails = new com.shashanka.entities.IPO(ipo.getId(), ipo.getPrice(), ipo.getCountShares(), ipo.getOpeningDateTime(), ipo.getRemarks(), stockExchangeRepository.findById(ipo.getExchangeId()).get(), companyRepository.findById(ipo.getId()).get());
+            Company companyIPO = companyRepository.findById(ipo.getId()).get();
             companyIPO.setListed(true);
             companyRepository.save(companyIPO);
             ipoRepository.save(ipoDetails);
@@ -47,7 +47,7 @@ public class IPOService {
         }
     }
 
-    public Optional<com.shashanka.entities.IPO> getIPO(String companyId)
+    public Optional<com.shashanka.entities.IPO> getIPO(int companyId)
     {
         return ipoRepository.findById(companyId);
     }

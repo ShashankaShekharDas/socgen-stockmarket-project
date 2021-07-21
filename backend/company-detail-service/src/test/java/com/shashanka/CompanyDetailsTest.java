@@ -39,29 +39,13 @@ public class CompanyDetailsTest {
     @Test
     public void getCompanyDetailsTests(){
 
-        assertEquals(companyDetailService.getCompanyDetails("a1").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("aa1").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("aab").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("aax").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("b1").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("c1").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("d1").isPresent(),true);
-        assertEquals(companyDetailService.getCompanyDetails("").isPresent(),false);
-        assertEquals(companyDetailService.getCompanyDetails("dfgd").isPresent(),false);
-        assertEquals(companyDetailService.getCompanyDetails("sdferg").isPresent(),false);
-        assertEquals(companyDetailService.getCompanyDetails("etgbd").isPresent(),false);
-        assertEquals(companyDetailService.getCompanyDetails("sfgd").isPresent(),false);
+//        Write new tests
 
     }
 
     @Test
     public void getCompanyTests(){
-        assertEquals(companyDetailService.getCompanyNames("a").size()==0,false);
-        assertEquals(companyDetailService.getCompanyNames("a1").size()==0,false);
-        assertEquals(companyDetailService.getCompanyNames("adfsgd").size()==0,true);
-        assertEquals(companyDetailService.getCompanyNames("aa").size()==0,false);
-        assertEquals(companyDetailService.getCompanyNames("b").size()==0,false);
-        assertEquals(companyDetailService.getCompanyNames("").size()==0,false);
+//        Write new tests
     }
 
 

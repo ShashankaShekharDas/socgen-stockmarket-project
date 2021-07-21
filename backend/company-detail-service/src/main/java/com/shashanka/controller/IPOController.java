@@ -29,7 +29,7 @@ public class IPOController {
     }
 
     @GetMapping("/{companyId}")
-    public ResponseEntity getIPO(@PathVariable String companyId)
+    public ResponseEntity getIPO(@PathVariable int companyId)
     {
         Optional<com.shashanka.entities.IPO> ipo = ipoService.getIPO(companyId);
         if(ipo.isEmpty())
