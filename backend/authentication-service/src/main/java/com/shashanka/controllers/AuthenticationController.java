@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/login")
+@RequestMapping
 @RestController
 public class AuthenticationController {
 
@@ -16,7 +16,7 @@ public class AuthenticationController {
 
     @PostMapping("/{type}")
     public ResponseEntity login(@RequestBody UserLogin userLogin, @PathVariable String type){
-        if(type.equals("user") || type.equals("admin")) return authenticationService.login(userLogin,"user");
+        if(type.equals("user") || type.equals("admin")) return authenticationService.login(userLogin,type);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid type "+type);
     }
 

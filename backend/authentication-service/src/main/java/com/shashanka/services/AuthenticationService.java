@@ -21,10 +21,10 @@ public class AuthenticationService {
     {
         try {
             String sql = "SELECT * FROM USERDB WHERE " +
-                    "user_name = ? AND " +
-                    "password = ? AND " +
-                    "type = ? AND " +
-                    "CONFIRMED = TRUE";
+                         "user_name = ? AND " +
+                         "password = ? AND " +
+                         "type = ? AND " +
+                         "CONFIRMED = TRUE";
             List<UserDB> query = jdbcTemplate.query(sql, new Object[]{userLogin.getUsername(), userLogin.getPassword(), type}, new BeanPropertyRowMapper<UserDB>(UserDB.class));
 
             return ResponseEntity.ok(query.size() >= 1);
