@@ -18,7 +18,6 @@ public class CompanyDetailService {
     @Autowired
     private CompanyRepository companyRepository;
 
-
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -32,13 +31,9 @@ public class CompanyDetailService {
 
     public List<Stock> retrievePeriodData(String companyId,String exchangeID, String periodFrom, String periodTo, int periodicity)
     {
-
         /*
-            PeriodFrom and periodTo input format yyyy/mm/ddhh:mm:ss i.e. date+time
+        Format for DateTime yyyy-mm-ddThh:mm:ss
          */
-        periodFrom = periodFrom.substring(0,10)+"T"+periodFrom.substring(10);
-        periodTo = periodTo.substring(0,10)+"T"+periodTo.substring(10);
-
         LocalDateTime periodFromDate = LocalDateTime.parse(periodFrom);
         LocalDateTime periodToDate = LocalDateTime.parse(periodTo);
 

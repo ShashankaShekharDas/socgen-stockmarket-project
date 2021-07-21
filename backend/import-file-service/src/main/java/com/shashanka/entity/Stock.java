@@ -1,4 +1,4 @@
-package com.shashanka.entities;
+package com.shashanka.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,4 +38,5 @@ public class Stock {
         this.price = price;
         this.dateTime = dateTime;
     }
+
 }

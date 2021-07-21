@@ -13,23 +13,17 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="COMPANY")
-public class Company {
+@Table(name = "Sector")
+public class Sector {
 
     @Id
-    private Integer code;
+    @Column(length = 5)
+    private String id;
 
-    @Column(length = 30)
+    @Column(length = 20)
     private String name;
 
-    @Column(precision = 15,scale = 2)
-    private double turnover;
-
-    @Column(length = 30)
-    private String ceo;
-
-    @Column(length = 200)
+    @Column(length = 100)
     private String about;
 
-    boolean listed;
 }

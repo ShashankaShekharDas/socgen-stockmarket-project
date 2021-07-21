@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("/user")
+@RequestMapping("/user/company")
 @RestController
 public class CompanyDetailController {
 
@@ -23,18 +23,18 @@ public class CompanyDetailController {
         return companyDetailService.getCompany();
     }
 
-    @GetMapping("/company/data/{companyName}")
+    @GetMapping("/{companyName}")
     public Company getCompanyData(@PathVariable String companyName){
         return companyDetailService.getCompanyDetails(companyName).isPresent()?companyDetailService.getCompanyDetails(companyName).get():null;
     }
 
-    @GetMapping("/viewCompany/charts/{companyId}/{exchangeID}/{periodFrom}/{periodTo}/{periodicity}")
+    @GetMapping("/{companyId}/{exchangeID}/{periodFrom}/{periodTo}/{periodicity}")
     public List<Stock> retrievePeriodData(@PathVariable String companyId,@PathVariable String exchangeID, @PathVariable String periodFrom, @PathVariable String  periodTo, @PathVariable int periodicity)
     {
         return companyDetailService.retrievePeriodData(companyId,exchangeID,periodFrom,periodTo,periodicity);
     }
 
-    @GetMapping("/viewCompany/{pattern}")
+    @GetMapping("/viewPattern/{pattern}")
     public List<Company> getCompanyNames(@PathVariable String pattern){
         return companyDetailService.getCompanyNames(pattern);
     }

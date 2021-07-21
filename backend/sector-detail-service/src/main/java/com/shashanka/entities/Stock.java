@@ -1,5 +1,6 @@
 package com.shashanka.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,6 +9,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Stock")
 public class Stock {
@@ -16,11 +18,11 @@ public class Stock {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int companyCode;
+    private Integer companyCode;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
-    private StockExchange ExchangeId;
+    private StockExchange exchangeId;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "name")
@@ -31,9 +33,9 @@ public class Stock {
 
     private LocalDateTime dateTime;
 
-    public Stock(int companyCode, StockExchange exchangeId, Company companyName, double price, LocalDateTime dateTime) {
+    public Stock(Integer companyCode, StockExchange exchangeId, Company companyName, double price, LocalDateTime dateTime) {
         this.companyCode = companyCode;
-        ExchangeId = exchangeId;
+        this.exchangeId = exchangeId;
         this.companyName = companyName;
         this.price = price;
         this.dateTime = dateTime;

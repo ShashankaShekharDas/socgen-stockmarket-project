@@ -1,4 +1,4 @@
-package com.shashanka.entities;
+package com.shashanka.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

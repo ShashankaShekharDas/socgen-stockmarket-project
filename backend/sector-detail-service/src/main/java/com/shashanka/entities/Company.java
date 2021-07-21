@@ -32,4 +32,6 @@ public class Company {
     private String about;
 
     boolean listed;
+
+
 }

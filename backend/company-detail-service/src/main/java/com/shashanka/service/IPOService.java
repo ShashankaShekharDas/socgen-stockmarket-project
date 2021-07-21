@@ -33,7 +33,6 @@ public class IPOService {
             com.shashanka.entities.IPO ipoDetails = new com.shashanka.entities.IPO(ipo.getId(), ipo.getPrice(), ipo.getCountShares(), ipo.getOpeningDateTime(), ipo.getRemarks(), stockExchangeRepository.findById(ipo.getExchangeId()).get(), companyRepository.findById(ipo.getCompanyName()).get());
             Company companyIPO = companyRepository.findById(ipo.getCompanyName()).get();
             companyIPO.setListed(true);
-            companyRepository.deleteById(ipo.getCompanyName());
             companyRepository.save(companyIPO);
             ipoRepository.save(ipoDetails);
             ipoResponse.setStatus(true);
