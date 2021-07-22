@@ -6,14 +6,11 @@ import com.shashanka.service.CompanyDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/company")
+@RequestMapping
 @RestController
 public class CompanyDetailController {
 
@@ -41,5 +38,16 @@ public class CompanyDetailController {
     public ResponseEntity getCompanyNames(@PathVariable String pattern){
         List<Company> companyNames = companyDetailService.getCompanyNames(pattern);
         return ResponseEntity.ok(companyNames);
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity addCompany(@RequestBody Company company)
+    {
+        return companyDetailService.addCompany(company);
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity deleteCompany(@PathVariable Integer code){
+        return companyDetailService.deleteCompany(code);
     }
 }

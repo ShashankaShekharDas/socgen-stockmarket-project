@@ -7,7 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/exchange")
+@RequestMapping
 @RestController
 public class ExchangeServiceController {
     @Autowired
@@ -36,5 +36,10 @@ public class ExchangeServiceController {
     public ResponseEntity getCompanies(@PathVariable String exchangeId)
     {
         return exchangeService.getCompany(exchangeId).isPresent()?ResponseEntity.ok(exchangeService.getCompany(exchangeId).get()):ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid Input");
+    }
+
+    @DeleteMapping("/{exchangeId}")
+    public ResponseEntity deleteExchange(@PathVariable String exchangeId){
+        return exchangeService.deleteExchange(exchangeId);
     }
 }

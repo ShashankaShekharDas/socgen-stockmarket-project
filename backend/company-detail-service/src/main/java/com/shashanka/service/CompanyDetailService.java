@@ -4,6 +4,8 @@ import com.shashanka.entities.Company;
 import com.shashanka.entities.Stock;
 import com.shashanka.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -49,5 +51,28 @@ public class CompanyDetailService {
 
     public List<Company> getCompanyNames(String pattern){
         return jdbcTemplate.query("SELECT * FROM COMPANY WHERE NAME LIKE '"+pattern+"%'",new BeanPropertyRowMapper<Company>(Company.class));
+    }
+
+    public ResponseEntity addCompany(Company company){
+        try {
+            companyRepository.save(company);
+            return ResponseEntity.ok("Company Added Successfully");
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldnt add company");
+        }
+    }
+
+    public ResponseEntity deleteCompany(Integer code)
+    {
+        try {
+            companyRepository.deleteById(code);
+            return ResponseEntity.ok("Deleted company successfully");
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cant delete with code "+String.valueOf(code));
+        }
     }
 }

@@ -36,4 +36,11 @@ public class IPOController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such IPO");
         return ResponseEntity.ok(ipo.get());
     }
+
+    @PostMapping("/update")
+    public ResponseEntity updateIPO(@RequestBody IPO ipo)
+    {
+        return ipoService.updateIPO(ipo);
+    }
+
 }

@@ -21,6 +21,6 @@ public class IPO {
 
     private String exchangeId;
 
-    private String companyName;
+    private int companyId;
 
 }
