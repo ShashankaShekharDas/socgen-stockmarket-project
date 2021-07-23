@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping
+@RequestMapping("/exchange")
 @RestController
 public class ExchangeServiceController {
     @Autowired
@@ -27,6 +27,7 @@ public class ExchangeServiceController {
     @ApiOperation(value = "Add Stock Exchanges",
                   notes = "Add stock exchanges, needs body in format of StockExchange entity",
                   response = ResponseEntity.class)
+
     public ResponseEntity addStockExchange(@RequestBody StockExchange stockExchange)
     {
         try {
@@ -39,13 +40,13 @@ public class ExchangeServiceController {
         }
 
     }
-    @GetMapping("/getCompanies/{exchangeId}")
-    @ApiOperation(value = "Get company in stock Exchanges",
-                  notes = "Get company in a particular stock exchange, requires exchange id as parameter",
+    @GetMapping("{exchangeId}")
+    @ApiOperation(value = "Get stock Exchange detail",
+                  notes = "Get details of a particular stock exchange, pass exchange id as parameter",
                   response = ResponseEntity.class)
-    public ResponseEntity getCompanies(@PathVariable String exchangeId)
+    public ResponseEntity getExchange(@PathVariable String exchangeId)
     {
-        return exchangeService.getCompany(exchangeId).isPresent()?ResponseEntity.ok(exchangeService.getCompany(exchangeId).get()):ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid Input");
+        return exchangeService.getExchange(exchangeId).isPresent()?ResponseEntity.ok(exchangeService.getExchange(exchangeId).get()):ResponseEntity.status(HttpStatus.NOT_FOUND).body("Invalid Input");
     }
 
     @DeleteMapping("/{exchangeId}")
@@ -54,5 +55,14 @@ public class ExchangeServiceController {
                   response = ResponseEntity.class)
     public ResponseEntity deleteExchange(@PathVariable String exchangeId){
         return exchangeService.deleteExchange(exchangeId);
+    }
+
+    @GetMapping("getCompany/{exchangeId}")
+    @ApiOperation(value = "All stock of an exchange",
+                  notes = "Gets all stock present in an exchange",
+                  response = ResponseEntity.class)
+    public ResponseEntity getStock(@PathVariable String exchangeId)
+    {
+        return exchangeService.getStock(exchangeId);
     }
 }

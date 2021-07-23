@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class IPOService {
@@ -90,7 +87,7 @@ public class IPOService {
         Collections.sort(companyList, new Comparator<Company>() {
             @Override
             public int compare(Company o1, Company o2) {
-                return o1.getName().compareTo(o2.getName());
+                return o1.getName().toLowerCase(Locale.ROOT).compareTo(o2.getName().toLowerCase(Locale.ROOT));
             }
         });
         return ResponseEntity.ok(companyList);

@@ -1,8 +1,11 @@
 package com.shashanka.service;
 
+import com.shashanka.dtos.DirectorDTO;
 import com.shashanka.entities.Company;
+import com.shashanka.entities.Director;
 import com.shashanka.entities.Stock;
 import com.shashanka.repositories.CompanyRepository;
+import com.shashanka.repositories.DirectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CompanyDetailService {
@@ -21,6 +25,9 @@ public class CompanyDetailService {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private DirectorRepository directorRepository;
 
     public Iterable<Company> getCompany(){
         return companyRepository.findAll();
@@ -73,6 +80,36 @@ public class CompanyDetailService {
         catch (Exception e)
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cant delete with code "+String.valueOf(code));
+        }
+    }
+
+    public ResponseEntity addDirector(List<DirectorDTO> directorList){
+        for(DirectorDTO directorDTO:directorList) {
+            try {
+                Optional<Company> byId = companyRepository.findById(directorDTO.getCompanyCode());
+                directorRepository.save(new Director(byId.get(), directorDTO.getDirectorName()));
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        return ResponseEntity.ok("Request Completed");
+    }
+
+    public ResponseEntity viewDirector(){
+        return ResponseEntity.ok(directorRepository.findAll());
+    }
+
+    public ResponseEntity viewDirectorId(int companyId)
+    {
+        try {
+            return ResponseEntity.ok(directorRepository.findAllByCompanyCode(companyRepository.findById(companyId).get()));
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such director");
         }
     }
 }

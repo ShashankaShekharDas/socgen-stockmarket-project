@@ -1,6 +1,8 @@
 package com.shashanka.controller;
 
+import com.shashanka.dtos.DirectorDTO;
 import com.shashanka.entities.Company;
+import com.shashanka.entities.Director;
 import com.shashanka.entities.Stock;
 import com.shashanka.service.CompanyDetailService;
 import io.swagger.annotations.ApiOperation;
@@ -68,5 +70,29 @@ public class CompanyDetailController {
                   response = ResponseEntity.class)
     public ResponseEntity deleteCompany(@PathVariable Integer code){
         return companyDetailService.deleteCompany(code);
+    }
+
+    @ApiOperation(value = "Adds director",
+                  notes = "Adds director to company. Supports mutliple directors added at once using list of directordto",
+                  response = ResponseEntity.class)
+    @PostMapping("/director")
+    public ResponseEntity addDirectors(@RequestBody List<DirectorDTO> directorList){
+        return companyDetailService.addDirector(directorList);
+    }
+
+    @ApiOperation(value = "View directors",
+                  notes = "View all directors of all companies",
+                  response = ResponseEntity.class)
+    @GetMapping("/director")
+    public ResponseEntity viewDirectors(){
+        return companyDetailService.viewDirector();
+    }
+
+    @ApiOperation(value = "View director of specific company",
+                  notes = "View director by passing in company id",
+                  response = ResponseEntity.class)
+    @GetMapping("/director/{companyId}")
+    public ResponseEntity viewDirector(@PathVariable int companyId){
+        return companyDetailService.viewDirectorId(companyId);
     }
 }
