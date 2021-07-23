@@ -3,6 +3,7 @@ package com.shashanka.controllers;
 import com.shashanka.dtos.StockDTO;
 import com.shashanka.entities.Sector;
 import com.shashanka.services.SectorServices;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class SectorController {
     private SectorServices sectorServices;
 
     @GetMapping("/{sectorId}")
+    @ApiOperation(value = "Get Companies in a sector",
+                  notes = "Get companies belonging to a sector, pass in a string containing sector id",
+                  response = ResponseEntity.class)
     public ResponseEntity getCompany(@PathVariable String sectorId){
         Optional<Sector> company = sectorServices.getCompany(sectorId);
         if(company.isEmpty())
@@ -30,6 +34,9 @@ public class SectorController {
     }
 
     @GetMapping("/{sectorId}/{fromPeriod}/{toPeriod}/{periodicity}")
+    @ApiOperation(value = "Get prices of companies in sector",
+                  notes = "Get prices belonging to a sector for a definite period",
+                  response = ResponseEntity.class)
     public ResponseEntity getSectorPrice(@PathVariable String sectorId, @PathVariable String fromPeriod, @PathVariable String toPeriod, @PathVariable int periodicity){
         List<StockDTO> sectorPrice = sectorServices.getSectorPrice(sectorId, fromPeriod, toPeriod, periodicity);
         if(sectorPrice.isEmpty()) {

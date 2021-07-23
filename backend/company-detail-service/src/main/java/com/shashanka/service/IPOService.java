@@ -5,13 +5,17 @@ import com.shashanka.dtos.IPOResponse;
 import com.shashanka.entities.Company;
 import com.shashanka.repositories.CompanyRepository;
 import com.shashanka.repositories.IPORepository;
+import com.shashanka.repositories.IpoJPA;
 import com.shashanka.repositories.StockExchangeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class IPOService {
@@ -24,6 +28,9 @@ public class IPOService {
 
     @Autowired
     IPORepository ipoRepository;
+
+    @Autowired
+    IpoJPA ipoJPA;
 
     public ResponseEntity<IPOResponse> addIPO(IPO ipo)
     {
@@ -47,23 +54,25 @@ public class IPOService {
         }
     }
 
-    public Optional<com.shashanka.entities.IPO> getIPO(int companyId)
-    {
-        return ipoRepository.findById(companyId);
+    public ResponseEntity getIPO(int companyId) {
+        try {
+            return ResponseEntity.ok(ipoJPA.findByCompanyId(companyRepository.findById(companyId).get()));
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldnt find ipo with company id "+companyId);
+        }
     }
 
     public ResponseEntity updateIPO(IPO ipo){
 
-//        Bug
-
         try {
             com.shashanka.entities.IPO ipoDetails = ipoRepository.findById(ipo.getId()).get();
-            System.out.println(ipoDetails);
             ipoDetails.setPrice(ipo.getPrice());
             ipoDetails.setCountShares(ipo.getCountShares());
             ipoDetails.setOpeningDateTime(ipo.getOpeningDateTime());
             ipoDetails.setRemarks(ipo.getRemarks());
-            System.out.println(ipoDetails);
+            ipoRepository.save(ipoDetails);
             return ResponseEntity.ok("Updated Successfully");
         }
         catch (Exception e)
@@ -71,5 +80,19 @@ public class IPOService {
             System.out.println(e);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldnt update");
         }
+    }
+
+    public ResponseEntity getChronology(){
+        Iterable<com.shashanka.entities.IPO> allIPO = ipoRepository.findAll();
+        List<Company> companyList = new ArrayList<>();
+        for(com.shashanka.entities.IPO ipo:allIPO)
+            companyList.add(ipo.getCompanyId());
+        Collections.sort(companyList, new Comparator<Company>() {
+            @Override
+            public int compare(Company o1, Company o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        return ResponseEntity.ok(companyList);
     }
 }

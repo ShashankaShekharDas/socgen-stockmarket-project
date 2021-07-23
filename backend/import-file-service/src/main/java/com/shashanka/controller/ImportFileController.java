@@ -1,6 +1,7 @@
 package com.shashanka.controller;
 
 import com.shashanka.service.ImportFileService;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.compress.utils.FileNameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,9 @@ public class ImportFileController {
     ImportFileService importFileService;
 
     @PostMapping
+    @ApiOperation(value = "Import stock from excel file",
+                  notes = "Import data from .xlsx or .xls file and perform checks then add to db",
+                  response = ResponseEntity.class)
     public ResponseEntity addFile(@RequestParam("file") MultipartFile file) throws IOException {
 
 

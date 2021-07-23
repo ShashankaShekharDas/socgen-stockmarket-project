@@ -32,7 +32,7 @@ public class IPO {
     private StockExchange ExchangeId;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "name")
-    private Company companyName;
+    @JoinColumn(referencedColumnName = "code")
+    private Company companyId;
 
 }
