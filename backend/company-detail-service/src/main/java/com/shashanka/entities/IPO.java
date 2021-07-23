@@ -14,9 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "IPO")
 public class IPO {
 
-    @Column(length = 5)
     @Id
-    private String id;
+    private int id;
 
     @Column(columnDefinition="Decimal(6,2)")
     private double price;
@@ -33,7 +32,7 @@ public class IPO {
     private StockExchange ExchangeId;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "name")
-    private Company companyName;
+    @JoinColumn(referencedColumnName = "code")
+    private Company companyId;
 
 }

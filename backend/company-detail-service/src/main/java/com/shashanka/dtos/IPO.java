@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IPO {
-    private String id;
+    private int id;
 
     private double price;
 
@@ -21,6 +21,6 @@ public class IPO {
 
     private String exchangeId;
 
-    private String companyName;
+    private int companyId;
 
 }

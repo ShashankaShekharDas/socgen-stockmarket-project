@@ -15,8 +15,8 @@ public class CompanySector {
     private int id;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "name")
-    private Company companyName;
+    @JoinColumn(referencedColumnName = "code")
+    private Company company;
 
     @OneToOne
     @JoinColumn(referencedColumnName = "Id")

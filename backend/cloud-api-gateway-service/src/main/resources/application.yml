@@ -1,0 +1,28 @@
+server:
+  port: 8125
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: authentication-service
+          uri: lb://authentication-service
+          predicates:
+            - Path=/authentication/**
+        - id: company-detail-service
+          uri: lb://company-detail-service
+          predicates:
+            - Path=/companyDetail/**
+        - id: import-file-service
+          uri: lb://import-file-service
+          predicates:
+            - Path=/import/**
+        - id: sector-service
+          uri: lb://sector-service
+          predicates:
+            - Path=/sector/**
+        - id: stock-exchange-service
+          uri: lb://stock-exchange-service
+          predicates:
+            - Path=/exchange/**
