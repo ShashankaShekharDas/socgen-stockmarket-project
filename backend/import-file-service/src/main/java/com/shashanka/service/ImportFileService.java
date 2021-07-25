@@ -43,6 +43,8 @@ public class ImportFileService {
 
         String companyName = company.get().getName();
 
+        System.out.println(stockExchange);
+        stockExchange = stockExchange.toLowerCase(Locale.ROOT);
         Optional<StockExchange> exchangeRow = stockExchangeRepository.findById(stockExchange);
 
         if(exchangeRow.isEmpty())return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Exchange with name "+stockExchange+" doesn't exist. Verify and try again");

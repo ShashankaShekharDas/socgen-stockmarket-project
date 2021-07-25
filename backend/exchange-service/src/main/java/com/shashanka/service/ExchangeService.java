@@ -38,6 +38,7 @@ public class ExchangeService {
     private CompanyRepository companyRepository;
 
     public Iterable<StockExchange> getStockExchanges() {
+        System.out.println(stockRepository.findAll());
         return stockRepository.findAll();
     }
 

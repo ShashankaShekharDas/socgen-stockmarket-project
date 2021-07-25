@@ -33,10 +33,15 @@ public class CompanyDetailService {
         return companyRepository.findAll();
     }
 
-    public List<Company> getCompanyDetails(String companyName){
+    public ResponseEntity getCompanyDetails(int companyId){
 
-        String sql = "select * from company where name = ?";
-        return jdbcTemplate.query(sql,new Object[]{companyName},new BeanPropertyRowMapper<Company>(Company.class));
+        try {
+            return ResponseEntity.ok(companyRepository.findById(companyId));
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cant find company");
+        }
     }
 
     public List<Stock> retrievePeriodData(String companyId,String exchangeID, String periodFrom, String periodTo, int periodicity)

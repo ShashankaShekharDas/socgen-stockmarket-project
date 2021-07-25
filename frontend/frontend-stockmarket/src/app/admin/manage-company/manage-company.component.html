@@ -1,0 +1,128 @@
+<div class="container">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="addCompany-tab" data-bs-toggle="pill" data-bs-target="#addCompany" type="button" role="tab" aria-controls="addCompany" aria-selected="true">Add Company</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="deleteCompany-tab" data-bs-toggle="pill" data-bs-target="#deleteCompany" type="button" role="tab" aria-controls="deleteCompany" aria-selected="false">Deactivate Company</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="addIPO-tab" data-bs-toggle="pill" data-bs-target="#addIPO" type="button" role="tab" aria-controls="addIPO" aria-selected="false">Add IPO</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="updateIPO-tab" data-bs-toggle="pill" data-bs-target="#updateIPO" type="button" role="tab" aria-controls="updateIPO" aria-selected="false">Update IPO</button>
+        </li>
+    </ul>
+
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="addCompany" role="tabpanel" aria-labelledby="addCompany-tab">
+            <form>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">ID:</span>
+                    <input type="text" [(ngModel)]="details.code" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="companyName">Name:</span>
+                    <input type="text" [(ngModel)]="details.name" class="form-control" placeholder="Company Name" aria-label="companyName" name="companyName" maxlength="20" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="turnover">Turnover:</span>
+                    <input type="number" [(ngModel)]="details.turnover" class="form-control" placeholder="Company Turnover" aria-label="turnover" name="turnover" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="ceo">CEO:</span>
+                    <input type="text" [(ngModel)]="details.ceo" class="form-control" placeholder="CEO Name" aria-label="ceo" name="ceo" maxlength="20" required>
+                </div>
+                <div class="form-group">
+                    <span class="input-group-text" id="about">About:</span>
+                    <textarea class="form-control" [(ngModel)]="details.about" id="about" rows="2" name="about" maxlength="100"></textarea>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" (change)="details.listed = !details.listed" type="checkbox" value="check" id="listed">
+                    <label class="form-check-label" for="listed">
+                      Listed
+                    </label>
+                  </div>
+                <button class="btn btn-primary" (click)="addCompany()" >Press me to submit</button>
+            </form>
+
+        </div>
+        <div class="tab-pane fade" id="deleteCompany" role="tabpanel" aria-labelledby="deleteCompany-tab">  
+            <form action="">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">ID:</span>
+                    <input type="text" [(ngModel)]="deleteCode" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
+                </div>
+                <button class="btn btn-primary" (click)="deleteCompany()" >Press me to delete</button>
+
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addIPO" role="tabpanel" aria-labelledby="addIPO-tab">  
+            <form>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">ID:</span>
+                    <input type="number" [(ngModel)]="addIPO.id" class="form-control" placeholder="IPO Id" aria-label="code"  maxlength="5" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="IPOPrice">Price:</span>
+                    <input type="number" [(ngModel)]="addIPO.price" class="form-control" placeholder="Price" aria-label="IPOPrice" name="IPOPrice" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="nShares">Count Shares:</span>
+                    <input type="number" [(ngModel)]="addIPO.countShares" class="form-control" placeholder="Number of shares offered" aria-label="nShares" name="nShares" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="date">Opening Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="addIPO.openingDateTime" class="form-control" placeholder="Opening Date Time" aria-label="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <span class="input-group-text" id="remarks">Remarks:</span>
+                    <textarea class="form-control" [(ngModel)]="addIPO.remarks" id="remarks" rows="2" name="remarks" maxlength="100"></textarea>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="exchange">Exchange ID:</span>
+                    <input type="text" [(ngModel)]="addIPO.exchangeId" class="form-control" placeholder="Exchange ID" aria-label="exchange" name="exchange" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="cID">Company ID:</span>
+                    <input type="number" [(ngModel)]="addIPO.companyId" class="form-control" placeholder="Company ID" aria-label="cID" name="cID" required>
+                </div>
+                <button class="btn btn-primary" (click)="addIPODb()" >Press me to submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="updateIPO" role="tabpanel" aria-labelledby="updateIPO-tab">  
+            <form>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">ID:</span>
+                    <input type="number" [(ngModel)]="updateIPO.id" class="form-control" placeholder="IPO Id" aria-label="code"  maxlength="5" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="IPOPrice">Price:</span>
+                    <input type="number" [(ngModel)]="updateIPO.price" class="form-control" placeholder="Price" aria-label="IPOPrice" name="IPOPrice" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="nShares">Count Shares:</span>
+                    <input type="number" [(ngModel)]="updateIPO.countShares" class="form-control" placeholder="Number of shares offered" aria-label="nShares" name="nShares" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="date">Opening Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="updateIPO.openingDateTime" class="form-control" placeholder="Opening Date Time" aria-label="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <span class="input-group-text" id="remarks">Remarks:</span>
+                    <textarea class="form-control" [(ngModel)]="updateIPO.remarks" id="remarks" rows="2" name="remarks" maxlength="100"></textarea>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="exchange">Exchange ID:</span>
+                    <input type="text" [(ngModel)]="updateIPO.exchangeId" class="form-control" placeholder="Exchange ID" aria-label="exchange" name="exchange" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="cID">Company ID:</span>
+                    <input type="number" [(ngModel)]="updateIPO.companyId" class="form-control" placeholder="Company ID" aria-label="cID" name="cID" required>
+                </div>
+                <button class="btn btn-primary" (click)="updateIPODb()" >Press me to submit</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/company")
 @RestController
 public class CompanyDetailController {
@@ -28,12 +29,12 @@ public class CompanyDetailController {
         return companyDetailService.getCompany();
     }
 
-    @GetMapping("/specific/{companyName}")
+    @GetMapping("/specific/{companyId}")
     @ApiOperation(value = "Gets company details using company name",
                   notes = "Get Specific Company Details",
                   response = ResponseEntity.class)
-    public ResponseEntity getCompanyData(@PathVariable String companyName){
-        return companyDetailService.getCompanyDetails(companyName).size()>0?ResponseEntity.ok(companyDetailService.getCompanyDetails(companyName).get(0)):ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Company with name "+companyName+" not found");
+    public ResponseEntity getCompanyData(@PathVariable int companyId){
+        return companyDetailService.getCompanyDetails(companyId);
     }
 
     @GetMapping("/{companyId}/{exchangeID}/{periodFrom}/{periodTo}/{periodicity}")
