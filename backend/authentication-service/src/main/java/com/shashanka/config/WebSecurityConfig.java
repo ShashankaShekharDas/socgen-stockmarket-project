@@ -1,4 +1,5 @@
 package com.shashanka.config;
+import com.shashanka.filters.AuthRequestFilter;
 import com.shashanka.services.UserAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.shashanka.config;
+package com.shashanka.filters;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.shashanka.config.JwtTokenUtil;
 import com.shashanka.services.UserAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -38,9 +39,10 @@ public class AuthRequestFilter extends OncePerRequestFilter
         final String requestTokenHeader = request.getHeader("Authorization");
         String username = null;
         String jwtToken = null;
-        if(requestTokenHeader != null && requestTokenHeader.startsWith("Bearer "))
+        if(requestTokenHeader != null)
         {
-            jwtToken = requestTokenHeader.substring(7);
+            jwtToken = requestTokenHeader;
+            System.out.println("xyz"+jwtToken);
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             }
