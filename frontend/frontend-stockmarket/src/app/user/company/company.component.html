@@ -1,0 +1,88 @@
+<div class="container">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="companyDetails-tab" data-bs-toggle="pill" data-bs-target="#companyDetails" type="button" role="tab" aria-controls="companyDetails" aria-selected="true">View Company Detail</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addDirectors-tab" data-bs-toggle="pill" data-bs-target="#addDirectors" type="button" role="tab" aria-controls="addDirectors" aria-selected="true">Add Directors</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addSector-tab" data-bs-toggle="pill" data-bs-target="#addSector" type="button" role="tab" aria-controls="addSector" aria-selected="true">Add Sectors</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="deleteCompany-tab" data-bs-toggle="pill" data-bs-target="#deleteCompany" type="button" role="tab" aria-controls="deleteCompany" aria-selected="false">Deactivate Company</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="addIPO-tab" data-bs-toggle="pill" data-bs-target="#addIPO" type="button" role="tab" aria-controls="addIPO" aria-selected="false">Add IPO</button>
+        </li>
+        <li class="nav-item" role="presentation">
+        <button class="nav-link" id="updateIPO-tab" data-bs-toggle="pill" data-bs-target="#updateIPO" type="button" role="tab" aria-controls="updateIPO" aria-selected="false">Update IPO</button>
+        </li>
+    </ul>
+
+
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="companyDetails" role="tabpanel" aria-labelledby="companyDetails-tab">
+            <form action="">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Code:</span>
+                    <input type="number" [(ngModel)]="companyCode" class="form-control" placeholder="Company Code" aria-label="code" name="code" required>
+                </div>
+                <button class="btn btn-primary" (click) = "getCompanyData()">Press to me get data</button>
+            </form>
+        </div>
+
+        <div class="" *ngIf="companyDetails.name!='X'">
+            <h3>Company Details</h3>
+            <table class="table" >
+                <thead>
+                    <th scope="col">Company Code</th>
+                    <th scope="col">Company Name</th>
+                    <th scope="col">Company Turnover</th>
+                    <th scope="col">Company CEO</th>
+                    <th scope="col">Company About</th>
+                </thead>
+                <tbody>
+                    <tr>
+                       <th scope="row">{{ companyDetails.code }}</th>
+                       <td>{{ companyDetails.name }}</td> 
+                       <td>{{ companyDetails.turnover }}</td> 
+                       <td>{{ companyDetails.ceo }}</td> 
+                       <td>{{ companyDetails.about }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="" *ngIf="director.length > 0 ">
+            <h3>Director Details</h3>
+            <table class="table" >
+                <thead>
+                    <th scope="col">#</th>
+                    <th scope="col">Director Name</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dr of director; let i = index" [attr.data-index]="i">
+                       <th scope="row">{{ i+1 }}</th>
+                       <td>{{ dr.directorName }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="addDirectors" role="tabpanel" aria-labelledby="addDirectors-tab">
+            sfgd
+        </div>
+        <div class="tab-pane fade" id="addSector" role="tabpanel" aria-labelledby="addSector-tab">
+            ewrteyru
+        </div>
+        <div class="tab-pane fade" id="deleteCompany" role="tabpanel" aria-labelledby="deleteCompany-tab">  
+            987654
+        </div>
+        <div class="tab-pane fade" id="addIPO" role="tabpanel" aria-labelledby="addIPO-tab">  
+            poiuyt
+        </div>
+        <div class="tab-pane fade" id="updateIPO" role="tabpanel" aria-labelledby="updateIPO-tab">  
+            098765
+        </div>
+    </div>
+</div>

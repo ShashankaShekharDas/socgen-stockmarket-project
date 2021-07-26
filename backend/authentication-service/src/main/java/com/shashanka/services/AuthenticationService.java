@@ -36,7 +36,7 @@ public class AuthenticationService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public ResponseEntity login(UserLogin userLogin, String type)
+    public ResponseEntity login(UserLogin userLogin)
     {
         UserDetails userDetails = userAuth.loadUserByUsername(userLogin.getUsername());
         if(userDetails == null || !passwordEncoder.matches(userLogin.getPassword(), userDetails.getPassword()))

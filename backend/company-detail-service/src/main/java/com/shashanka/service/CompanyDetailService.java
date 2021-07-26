@@ -120,7 +120,13 @@ public class CompanyDetailService {
     public ResponseEntity viewDirectorId(int companyId)
     {
         try {
-            return ResponseEntity.ok(directorRepository.findAllByCompanyCode(companyRepository.findById(companyId).get()));
+            List<Director> byCompanyCode = directorRepository.findAllByCompanyCode(companyRepository.findById(companyId).get());
+            List<DirectorDTO> directorDTOS = new ArrayList<>();
+            for(Director director:byCompanyCode)
+            {
+                directorDTOS.add(new DirectorDTO(director.getCompanyCode().getCode(),director.getDirectorName()));
+            }
+            return ResponseEntity.ok(directorDTOS);
         }
         catch (Exception e)
         {

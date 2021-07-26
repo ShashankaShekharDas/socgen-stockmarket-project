@@ -1,8 +1,8 @@
 import { IPO } from './../manage-company/IPO';
-import { Company } from './../manage-company/Company';
+import { Company } from 'src/app/entity/Company';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Director } from '../manage-company/Director';
+import { Director } from 'src/app/entity/Director';
 import { Sector } from '../manage-company/Sector';
 
 @Injectable({

@@ -1,8 +1,8 @@
 import { IPO } from './IPO';
 import { CompanyServiceService } from './../service/company-service.service';
-import { Company } from './Company';
+import { Company } from '../../entity/Company';
 import { Component, OnInit } from '@angular/core';
-import { Director } from './Director';
+import { Director } from '../../entity/Director';
 import { Sector } from './Sector';
 
 @Component({
