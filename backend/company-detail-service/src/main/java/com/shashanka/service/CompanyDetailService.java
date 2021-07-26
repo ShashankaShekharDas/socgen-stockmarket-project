@@ -1,11 +1,15 @@
 package com.shashanka.service;
 
+import com.shashanka.dtos.CompanySectorDTO;
 import com.shashanka.dtos.DirectorDTO;
 import com.shashanka.entities.Company;
+import com.shashanka.entities.CompanySector;
 import com.shashanka.entities.Director;
 import com.shashanka.entities.Stock;
 import com.shashanka.repositories.CompanyRepository;
+import com.shashanka.repositories.CompanySectorRepository;
 import com.shashanka.repositories.DirectorRepository;
+import com.shashanka.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +32,12 @@ public class CompanyDetailService {
 
     @Autowired
     private DirectorRepository directorRepository;
+
+    @Autowired
+    private CompanySectorRepository companySectorRepository;
+
+    @Autowired
+    private SectorRepository sectorRepository;
 
     public Iterable<Company> getCompany(){
         return companyRepository.findAll();
@@ -116,5 +126,17 @@ public class CompanyDetailService {
         {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such director");
         }
+    }
+
+    public ResponseEntity addSector(List<CompanySectorDTO> companySectorDTOList)
+    {
+        for(CompanySectorDTO companySectorDTO:companySectorDTOList) {
+            try {
+                CompanySector companySector = new CompanySector(companyRepository.findById(companySectorDTO.getCompany()).get(), sectorRepository.findById(companySectorDTO.getSectorId()).get());
+                companySectorRepository.save(companySector);
+            } catch (Exception e) {
+            }
+        }
+        return ResponseEntity.ok("Request successful");
     }
 }

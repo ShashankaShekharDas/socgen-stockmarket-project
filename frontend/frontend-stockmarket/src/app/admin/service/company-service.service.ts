@@ -2,6 +2,8 @@ import { IPO } from './../manage-company/IPO';
 import { Company } from './../manage-company/Company';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Director } from '../manage-company/Director';
+import { Sector } from '../manage-company/Sector';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +40,14 @@ export class CompanyServiceService {
 
   updateIPOService(ipo:IPO){
     return this.http.post(this.url+"IPO/update",ipo,{responseType:"text"})
+  }
+
+  addDirectorService(directors:Director[])
+  {
+    return this.http.post(this.url+"company/director",directors,{responseType:"text"});
+  }
+  addSectorService(sectors:Sector[])
+  {
+    return this.http.post(this.url+"company/sector",sectors,{responseType:"text"});
   }
 }

@@ -1,8 +1,9 @@
 package com.shashanka.controller;
 
+import com.shashanka.dtos.CompanySectorDTO;
 import com.shashanka.dtos.DirectorDTO;
 import com.shashanka.entities.Company;
-import com.shashanka.entities.Director;
+import com.shashanka.entities.CompanySector;
 import com.shashanka.entities.Stock;
 import com.shashanka.service.CompanyDetailService;
 import io.swagger.annotations.ApiOperation;
@@ -95,5 +96,11 @@ public class CompanyDetailController {
     @GetMapping("/director/{companyId}")
     public ResponseEntity viewDirector(@PathVariable int companyId){
         return companyDetailService.viewDirectorId(companyId);
+    }
+
+    @PostMapping("/sector")
+    public ResponseEntity addSector(@RequestBody List<CompanySectorDTO> companySectorDTO)
+    {
+        return companyDetailService.addSector(companySectorDTO);
     }
 }

@@ -1,7 +1,13 @@
 <div class="container">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="addCompany-tab" data-bs-toggle="pill" data-bs-target="#addCompany" type="button" role="tab" aria-controls="addCompany" aria-selected="true">Add Company</button>
+            <button class="nav-link active" id="addCompany-tab" data-bs-toggle="pill" data-bs-target="#addCompany" type="button" role="tab" aria-controls="addCompany" aria-selected="true">Add Company</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addDirectors-tab" data-bs-toggle="pill" data-bs-target="#addDirectors" type="button" role="tab" aria-controls="addDirectors" aria-selected="true">Add Directors</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="addSector-tab" data-bs-toggle="pill" data-bs-target="#addSector" type="button" role="tab" aria-controls="addSector" aria-selected="true">Add Sectors</button>
         </li>
         <li class="nav-item" role="presentation">
         <button class="nav-link" id="deleteCompany-tab" data-bs-toggle="pill" data-bs-target="#deleteCompany" type="button" role="tab" aria-controls="deleteCompany" aria-selected="false">Deactivate Company</button>
@@ -48,11 +54,47 @@
             </form>
 
         </div>
+        <div class="tab-pane fade" id="addDirectors" role="tabpanel" aria-labelledby="addDirectors-tab">
+            <form>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Company Code:</span>
+                    <input type="number" [(ngModel)]="directors[0].companyCode" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
+                </div>
+                <div *ngFor="let director of directors;let i = index" [attr.data-index]="i">
+                    
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="name">Director Name:</span>
+                        <input type="text" [(ngModel)]="director.directorName" class="form-control" aria-label="name"  maxlength="30" name="{{ i }}" required>
+                        <button type="button" class="btn btn-danger" (click) = "deleteDirectorByIndex(i)">-</button>
+                        <button type="button" class="btn btn-success" (click) = "addDirector()" *ngIf="i == directors.length-1">+</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="addDirectorsDB()" >Press me to submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="addSector" role="tabpanel" aria-labelledby="addSector-tab">
+            <form>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Company Code:</span>
+                    <input type="number" [(ngModel)]="sectors[0].company" class="form-control" placeholder="Company Code" aria-label="code" name="code" required>
+                </div>
+                <div *ngFor="let sector of sectors;let i = index" [attr.data-index]="i">
+                    
+                    <div class="input-group flex-nowrap">
+                        <span class="input-group-text" id="name">Sector ID:</span>
+                        <input type="text" [(ngModel)]="sector.sectorId" class="form-control" aria-label="name"  maxlength="30" name="{{ i }}" required>
+                        <button type="button" class="btn btn-danger" (click) = "deleteSectorByIndex(i)">-</button>
+                        <button type="button" class="btn btn-success" (click) = "addSector()" *ngIf="i == sectors.length-1">+</button>
+                    </div>
+                </div>
+                <button class="btn btn-primary" (click)="addSectorsDB()" >Press me to submit</button>
+            </form>
+        </div>
         <div class="tab-pane fade" id="deleteCompany" role="tabpanel" aria-labelledby="deleteCompany-tab">  
             <form action="">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="code">ID:</span>
-                    <input type="text" [(ngModel)]="deleteCode" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
+                    <input type="text" [(ngModel)]="deleteDirectorIndex" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
                 </div>
                 <button class="btn btn-primary" (click)="deleteCompany()" >Press me to delete</button>
 

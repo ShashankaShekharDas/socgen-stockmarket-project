@@ -1,8 +1,6 @@
 package com.shashanka.controllers;
 
 import com.shashanka.dtos.StockDTO;
-import com.shashanka.entities.Company;
-import com.shashanka.entities.CompanySector;
 import com.shashanka.entities.Sector;
 import com.shashanka.services.SectorServices;
 import io.swagger.annotations.ApiOperation;
