@@ -2,10 +2,7 @@ package com.shashanka.service;
 
 import com.shashanka.dtos.CompanySectorDTO;
 import com.shashanka.dtos.DirectorDTO;
-import com.shashanka.entities.Company;
-import com.shashanka.entities.CompanySector;
-import com.shashanka.entities.Director;
-import com.shashanka.entities.Stock;
+import com.shashanka.entities.*;
 import com.shashanka.repositories.CompanyRepository;
 import com.shashanka.repositories.CompanySectorRepository;
 import com.shashanka.repositories.DirectorRepository;
@@ -144,5 +141,21 @@ public class CompanyDetailService {
             }
         }
         return ResponseEntity.ok("Request successful");
+    }
+
+    public ResponseEntity getCompanySector(int companyCode){
+        try {
+            List<CompanySector> companySectorList = companySectorRepository.findAllByCompany(companyRepository.findById(companyCode).get());
+            List<Sector> sectorList = new ArrayList<>();
+            for(CompanySector companySector:companySectorList)
+            {
+                sectorList.add(companySector.getSectorId());
+            }
+            return ResponseEntity.ok(sectorList);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldnt find company with company code "+companyCode);
+        }
     }
 }

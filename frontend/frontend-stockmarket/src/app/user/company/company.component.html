@@ -69,6 +69,25 @@
                 </tbody>
             </table>
         </div>
+        <div class="" *ngIf="sector.length > 0 ">
+            <h3>Sector Details</h3>
+            <table class="table" >
+                <thead>
+                    <th scope="col">#</th>
+                    <th scope="col">Sector ID</th>
+                    <th scope="col">Sector Name</th>
+                    <th scope="col">Sector About</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let sr of sector; let i = index" [attr.data-index]="i">
+                       <th scope="row">{{ i+1 }}</th>
+                       <td>{{ sr.id  }}</td> 
+                       <td>{{ sr.name }}</td> 
+                       <td>{{ sr.about }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="tab-pane fade" id="addDirectors" role="tabpanel" aria-labelledby="addDirectors-tab">
             sfgd
         </div>

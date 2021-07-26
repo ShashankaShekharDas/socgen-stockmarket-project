@@ -103,4 +103,10 @@ public class CompanyDetailController {
     {
         return companyDetailService.addSector(companySectorDTO);
     }
+
+    @GetMapping("/company/sector/{companyCode}")
+    public ResponseEntity getCompanySector(@PathVariable int companyCode)
+    {
+        return companyDetailService.getCompanySector(companyCode);
+    }
 }

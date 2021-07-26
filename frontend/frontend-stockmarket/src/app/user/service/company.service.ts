@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from 'src/app/entity/Company';
 import { Director } from 'src/app/entity/Director';
+import { Sector } from 'src/app/entity/Sector';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,10 @@ export class CompanyService {
 
   getDirectorData(code:number){
     return this.http.get<Director[]>(this.url+"/company/director/"+code);
+  }
+
+  getSectorData(code:number)
+  {
+    return this.http.get<Sector[]>(this.url+"/company/company/sector/"+code);
   }
 }
