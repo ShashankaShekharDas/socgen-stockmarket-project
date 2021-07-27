@@ -1,5 +1,6 @@
 package com.shashanka.controllers;
 
+import com.shashanka.dtos.UserLogin;
 import com.shashanka.entities.UserDB;
 import com.shashanka.services.CreateUserService;
 import io.swagger.annotations.ApiOperation;
@@ -23,5 +24,10 @@ public class CreateUserController {
         if(type.equals("user") || type.equals("admin"))
             return createUserService.createUser(user,type);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid option to create user of type "+type+" expected user or admin");
+    }
+
+    @PostMapping("/update")
+    public ResponseEntity updateUser(@RequestBody UserLogin userLogin){
+        return createUserService.updateUser(userLogin);
     }
 }

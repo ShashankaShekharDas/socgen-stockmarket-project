@@ -1,4 +1,4 @@
-import { IPO } from './../manage-company/IPO';
+import { IPO } from '../../entity/IPO';
 import { Company } from 'src/app/entity/Company';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

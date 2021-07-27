@@ -1,3 +1,5 @@
+import { UserAuth } from './../../entity/UserAuth';
+import { Router } from '@angular/router';
 import { ImportFileService } from './../service/import-file.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,10 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class ImportDataComponent implements OnInit {
 
   file?:File;
+  auth?:UserAuth;
 
-  constructor(private importService:ImportFileService) { }
+  constructor(private router:Router,private importService:ImportFileService) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("session") == null){
+      this.router.navigate(['/login']);
+    }
+    this.auth = JSON.parse(sessionStorage.getItem("session")!);
+    if(!this.auth?.admin)this.router.navigate(['/login']);
+    
   }
 
   addFile(){

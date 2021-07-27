@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AppComponent } from './app.component';
 import { ManageExchangeComponent } from './admin/manage-exchange/manage-exchange.component';
@@ -12,7 +12,8 @@ import { LoginComponent } from './user/login/login.component';
 import { CompanyComponent } from './user/company/company.component';
 import { UsersComponent } from './user/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './components/home/home.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { LogoutComponent } from './user/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +24,15 @@ import { HomeComponent } from './components/home/home.component';
     LoginComponent,
     CompanyComponent,
     UsersComponent,
-    HomeComponent
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgApexchartsModule,
+    GoogleChartsModule
     
   ],
   providers: [],

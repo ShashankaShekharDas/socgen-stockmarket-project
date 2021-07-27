@@ -80,16 +80,18 @@ public class IPOService {
     }
 
     public ResponseEntity getChronology(){
-        Iterable<com.shashanka.entities.IPO> allIPO = ipoRepository.findAll();
-        List<Company> companyList = new ArrayList<>();
-        for(com.shashanka.entities.IPO ipo:allIPO)
-            companyList.add(ipo.getCompanyId());
-        Collections.sort(companyList, new Comparator<Company>() {
-            @Override
-            public int compare(Company o1, Company o2) {
-                return o1.getName().toLowerCase(Locale.ROOT).compareTo(o2.getName().toLowerCase(Locale.ROOT));
+        try {
+            Iterable<com.shashanka.entities.IPO> allIPO = ipoRepository.findAll();
+            List<IPO> ipoList = new ArrayList<>();
+            for(com.shashanka.entities.IPO ipo:allIPO)
+            {
+                ipoList.add(new IPO(ipo.getId(),ipo.getPrice(),ipo.getCountShares(),ipo.getOpeningDateTime(),ipo.getRemarks(),ipo.getExchangeId().getId(),ipo.getCompanyId().getCode()));
             }
-        });
-        return ResponseEntity.ok(companyList);
+            return ResponseEntity.ok(ipoList);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No IPO");
+        }
     }
 }

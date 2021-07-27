@@ -1,4 +1,6 @@
-import { IPO } from './IPO';
+import { UserAuth } from './../../entity/UserAuth';
+import { Router } from '@angular/router';
+import { IPO } from '../../entity/IPO';
 import { CompanyServiceService } from './../service/company-service.service';
 import { Company } from '../../entity/Company';
 import { Component, OnInit } from '@angular/core';
@@ -59,10 +61,17 @@ export class ManageCompanyComponent implements OnInit {
 
   tempp?:any;
 
+  auth?:UserAuth;
 
-  constructor(private companyService:CompanyServiceService) { }
+
+  constructor(private router:Router,private companyService:CompanyServiceService) { }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem("session") == null){
+      this.router.navigate(['/login']);
+    }
+    this.auth = JSON.parse(sessionStorage.getItem("session")!);
+    if(!this.auth?.admin)this.router.navigate(['/login']);
     this.viewCompany();
     this.addDirector();
     this.addSector();

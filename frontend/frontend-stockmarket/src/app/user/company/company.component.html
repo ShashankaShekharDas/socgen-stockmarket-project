@@ -4,20 +4,12 @@
             <button class="nav-link active" id="companyDetails-tab" data-bs-toggle="pill" data-bs-target="#companyDetails" type="button" role="tab" aria-controls="companyDetails" aria-selected="true">View Company Detail</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addDirectors-tab" data-bs-toggle="pill" data-bs-target="#addDirectors" type="button" role="tab" aria-controls="addDirectors" aria-selected="true">Add Directors</button>
+            <button class="nav-link" id="getPeriod-tab" data-bs-toggle="pill" data-bs-target="#getPeriod" type="button" role="tab" aria-controls="getPeriod" aria-selected="true">Get Period Data</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="addSector-tab" data-bs-toggle="pill" data-bs-target="#addSector" type="button" role="tab" aria-controls="addSector" aria-selected="true">Add Sectors</button>
+            <button class="nav-link" id="viewIPO-tab" data-bs-toggle="pill" data-bs-target="#viewIPO" type="button" role="tab" aria-controls="viewIPO" aria-selected="true">View IPOs</button>
         </li>
-        <li class="nav-item" role="presentation">
-        <button class="nav-link" id="deleteCompany-tab" data-bs-toggle="pill" data-bs-target="#deleteCompany" type="button" role="tab" aria-controls="deleteCompany" aria-selected="false">Deactivate Company</button>
-        </li>
-        <li class="nav-item" role="presentation">
-        <button class="nav-link" id="addIPO-tab" data-bs-toggle="pill" data-bs-target="#addIPO" type="button" role="tab" aria-controls="addIPO" aria-selected="false">Add IPO</button>
-        </li>
-        <li class="nav-item" role="presentation">
-        <button class="nav-link" id="updateIPO-tab" data-bs-toggle="pill" data-bs-target="#updateIPO" type="button" role="tab" aria-controls="updateIPO" aria-selected="false">Update IPO</button>
-        </li>
+        
     </ul>
 
 
@@ -30,78 +22,128 @@
                 </div>
                 <button class="btn btn-primary" (click) = "getCompanyData()">Press to me get data</button>
             </form>
-        </div>
+            <div class="" *ngIf="companyDetails.name!='X'">
+                <h3>Company Details</h3>
+                <table class="table" >
+                    <thead>
+                        <th scope="col">Company Code</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Company Turnover</th>
+                        <th scope="col">Company CEO</th>
+                        <th scope="col">Company About</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           <th scope="row">{{ companyDetails.code }}</th>
+                           <td>{{ companyDetails.name }}</td> 
+                           <td>{{ companyDetails.turnover }}</td> 
+                           <td>{{ companyDetails.ceo }}</td> 
+                           <td>{{ companyDetails.about }}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="" *ngIf="director.length > 0 ">
+                <h3>Director Details</h3>
+                <table class="table" >
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">Director Name</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dr of director; let i = index" [attr.data-index]="i">
+                           <th scope="row">{{ i+1 }}</th>
+                           <td>{{ dr.directorName }}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="" *ngIf="sector.length > 0 ">
+                <h3>Sector Details</h3>
+                <table class="table" >
+                    <thead>
+                        <th scope="col">#</th>
+                        <th scope="col">Sector ID</th>
+                        <th scope="col">Sector Name</th>
+                        <th scope="col">Sector About</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let sr of sector; let i = index" [attr.data-index]="i">
+                           <th scope="row">{{ i+1 }}</th>
+                           <td>{{ sr.id  }}</td> 
+                           <td>{{ sr.name }}</td> 
+                           <td>{{ sr.about }}</td> 
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>  
+        <div class="tab-pane fade" id="getPeriod" role="tabpanel" aria-labelledby="getPeriod-tab">
+            <form action="">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Code:</span>
+                    <input type="number" [(ngModel)]="companyCode" class="form-control" placeholder="Company Code" aria-label="code" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="exchange">Exchange ID:</span>
+                    <input type="text" [(ngModel)]="exchangeID" class="form-control" placeholder="Exchange ID" aria-label="exchange" name="exchange" required>
+                </div>
 
-        <div class="" *ngIf="companyDetails.name!='X'">
-            <h3>Company Details</h3>
-            <table class="table" >
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="fromDate">From Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="fromTime" class="form-control" placeholder="From Date Time" aria-label="fromDate" name="fromDate" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="toDate">To Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="toTime" class="form-control" placeholder="To Date Time" aria-label="toDate" name="toDate" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="period">Periodicity:</span>
+                    <input type="number" [(ngModel)]="period" class="form-control" placeholder="Periodicity" aria-label="period" name="period" required>
+                </div>
+
+                <button class="btn btn-primary" (click) = "getPeriodData()">Press to me get data</button>
+            
+            </form>
+            
+        </div>
+        <div class="tab-pane fade" id="viewIPO" role="tabpanel" aria-labelledby="viewIPO-tab">
+            
+            <table class="table" *ngIf="ipo != []">
                 <thead>
-                    <th scope="col">Company Code</th>
-                    <th scope="col">Company Name</th>
-                    <th scope="col">Company Turnover</th>
-                    <th scope="col">Company CEO</th>
-                    <th scope="col">Company About</th>
+                    <th scope="col">IPO Id</th>
+                    <th scope="col">Company Id</th>
+                    <th scope="col">Exchange Id</th>
+                    <th scope="col">Count Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Opening Date</th>
+                    <th scope="col">Remarks</th>
                 </thead>
-                <tbody>
+                <tbody >
+                    <tr *ngFor="let ipo_ind of ipo.slice(index,index+pageSize)">
+                        <td>{{ ipo_ind.id }}</td>
+                        <td>{{ ipo_ind.companyId }}</td>
+                        <td>{{ ipo_ind.exchangeId }}</td>
+                        <td>{{ ipo_ind.countShares }}</td>
+                        <td>{{ ipo_ind.price }}</td>
+                        <td>{{ ipo_ind.openingDateTime }}</td>
+                        <td>{{ ipo_ind.remarks }}</td>
+                    </tr>
                     <tr>
-                       <th scope="row">{{ companyDetails.code }}</th>
-                       <td>{{ companyDetails.name }}</td> 
-                       <td>{{ companyDetails.turnover }}</td> 
-                       <td>{{ companyDetails.ceo }}</td> 
-                       <td>{{ companyDetails.about }}</td> 
+                        <td><button type="button" class="btn btn-primary" (click) = "decrementIndex()">Previous</button></td>
+                        <td colspan="5">
+                            <div style="text-align: center;">
+                                <button type="button" class="btn btn-info" [disabled] = "pageNumber == 1" (click) = "changePage(p1)">{{ p1 }}</button>
+                                <button type="button" class="btn btn-info" (click) = "changePage(p2)">{{ p2 }}</button>
+                                <button type="button" class="btn btn-info" [disabled] = "disabled3" (click) = "changePage(p3)">{{ p3 }}</button>
+                            </div>
+                        </td>
+                        <td><button type="button" class="btn btn-primary" (click) = "incrementIndex()">Next</button></td>
                     </tr>
                 </tbody>
+                
+                
             </table>
-        </div>
-        
-        <div class="" *ngIf="director.length > 0 ">
-            <h3>Director Details</h3>
-            <table class="table" >
-                <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">Director Name</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let dr of director; let i = index" [attr.data-index]="i">
-                       <th scope="row">{{ i+1 }}</th>
-                       <td>{{ dr.directorName }}</td> 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="" *ngIf="sector.length > 0 ">
-            <h3>Sector Details</h3>
-            <table class="table" >
-                <thead>
-                    <th scope="col">#</th>
-                    <th scope="col">Sector ID</th>
-                    <th scope="col">Sector Name</th>
-                    <th scope="col">Sector About</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let sr of sector; let i = index" [attr.data-index]="i">
-                       <th scope="row">{{ i+1 }}</th>
-                       <td>{{ sr.id  }}</td> 
-                       <td>{{ sr.name }}</td> 
-                       <td>{{ sr.about }}</td> 
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="tab-pane fade" id="addDirectors" role="tabpanel" aria-labelledby="addDirectors-tab">
-            sfgd
-        </div>
-        <div class="tab-pane fade" id="addSector" role="tabpanel" aria-labelledby="addSector-tab">
-            ewrteyru
-        </div>
-        <div class="tab-pane fade" id="deleteCompany" role="tabpanel" aria-labelledby="deleteCompany-tab">  
-            987654
-        </div>
-        <div class="tab-pane fade" id="addIPO" role="tabpanel" aria-labelledby="addIPO-tab">  
-            poiuyt
-        </div>
-        <div class="tab-pane fade" id="updateIPO" role="tabpanel" aria-labelledby="updateIPO-tab">  
-            098765
         </div>
     </div>
 </div>

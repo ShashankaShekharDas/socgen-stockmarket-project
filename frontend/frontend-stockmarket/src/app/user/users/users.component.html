@@ -1,14 +1,24 @@
 <div class="container">
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="changeDetails-tab" data-bs-toggle="pill" data-bs-target="#changeDetails" type="button" role="tab" aria-controls="changeDetails" aria-selected="true">Change User Details</button>
+            <button class="nav-link active" id="changeDetails-tab" data-bs-toggle="pill" data-bs-target="#changeDetails" type="button" role="tab" aria-controls="changeDetails" aria-selected="true">Change Password</button>
         </li>
     </ul>
 
 
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="changeDetails" role="tabpanel" aria-labelledby="changeDetails-tab">
-            asdfsd
+            <form>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="email" class="form-control" id="username" [(ngModel)]="username" aria-describedby="username" name = "username" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Password" name="password" [(ngModel)]="password">
+                </div>
+                <button type="submit" class="btn btn-primary" (click) = "updatePassword()">Submit</button>
+              </form>
         </div>
     </div>
 </div>

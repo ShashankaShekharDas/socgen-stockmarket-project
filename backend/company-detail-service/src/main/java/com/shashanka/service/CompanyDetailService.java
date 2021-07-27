@@ -7,7 +7,9 @@ import com.shashanka.repositories.CompanyRepository;
 import com.shashanka.repositories.CompanySectorRepository;
 import com.shashanka.repositories.DirectorRepository;
 import com.shashanka.repositories.SectorRepository;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -89,9 +91,13 @@ public class CompanyDetailService {
             companyRepository.deleteById(code);
             return ResponseEntity.ok("Deleted company successfully");
         }
+        catch (DataIntegrityViolationException e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Data Integrity will be violated by deleting this. Please see other tables first");
+        }
         catch (Exception e)
         {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cant delete with code "+String.valueOf(code));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Can't find company");
         }
     }
 
