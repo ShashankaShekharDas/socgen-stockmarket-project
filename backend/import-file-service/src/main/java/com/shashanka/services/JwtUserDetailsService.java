@@ -13,19 +13,18 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 
 @Service
-public class UserAuth implements UserDetailsService {
+public class JwtUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UserDBRepository userDBRepository;
+    UserDBRepository userDBRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         UserDB user = userDBRepository.findByUserName(username);
-        System.out.println(user);
         if(!user.isConfirmed() || user == null)
             return null;
-        return new User(user.getUserName(),user.getPassword(), Arrays.asList(new SimpleGrantedAuthority(user.getType())));
+        User user1 = new User(user.getUserName(), user.getPassword(), Arrays.asList(new SimpleGrantedAuthority(user.getType())));
+        System.out.println(user1.getAuthorities().toString());
+        return user1;
     }
-
 }

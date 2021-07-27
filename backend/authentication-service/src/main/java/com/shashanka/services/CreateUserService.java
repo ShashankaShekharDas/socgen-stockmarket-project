@@ -2,11 +2,10 @@ package com.shashanka.services;
 
 import com.shashanka.dtos.UserLogin;
 import com.shashanka.entities.UserDB;
-import com.shashanka.repository.UserDBRepository;
+import com.shashanka.repositories.UserDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
