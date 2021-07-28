@@ -15,6 +15,7 @@ import { UsersComponent } from './user/users/users.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { LogoutComponent } from './user/logout/logout.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LogoutComponent } from './user/logout/logout.component';
     LoginComponent,
     CompanyComponent,
     UsersComponent,
-    LogoutComponent
+    LogoutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
