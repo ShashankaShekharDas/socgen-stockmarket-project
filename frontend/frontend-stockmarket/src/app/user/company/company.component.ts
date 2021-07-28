@@ -7,7 +7,8 @@ import { Director } from 'src/app/entity/Director';
 import { Sector } from 'src/app/entity/Sector';
 import { Stock } from 'src/app/entity/Stock';
 import { CompanyService } from '../service/company.service';
-// import { timeStamp } from 'console';
+import { ChartType, Row } from "angular-google-charts";
+
 
 @Component({
   selector: 'app-company',
@@ -17,6 +18,7 @@ import { CompanyService } from '../service/company.service';
 export class CompanyComponent implements OnInit {
 
   companyCode:number = 0;
+  companyCode2:number = 0;
   companyDetails:Company = {
     code:0,
     name:"X",
@@ -30,9 +32,13 @@ export class CompanyComponent implements OnInit {
   period:number = 5;
 
   fromTime:string = "2020-01-01T00:00:00";
+  fromTime2:string = "2020-01-01T00:00:00";
   toTime:string = "2020-01-01T00:00:00";
+  toTime2:string = "2020-01-01T00:00:00";
   exchangeID:string="";
+  exchangeID2:string="";
   stock:Stock[] = [];
+  stock2:Stock[] = [];
   ipo:IPO[] = [];
 
   // pagination
@@ -54,12 +60,51 @@ export class CompanyComponent implements OnInit {
   usernameUser?:string;
   constructor(private router:Router,private companyService:CompanyService) { }
 
+  // Charts
+  // Data in date,value format
+  chart = {
+    "title":"Price in given range for",
+    "type":ChartType.LineChart,
+    "data":[
+      ["test",1]
+    ],
+    "columnNames":['Date', 'Price'],
+    "options":{},
+    "width":1500,
+    "height":500
+  }
+  chart2 = {
+    "title":"Price in given range for",
+    "type":ChartType.LineChart,
+    "data":[
+      ["test",1]
+    ],
+    "columnNames":['Date', 'Price'],
+    "options":{},
+    "width":1500,
+    "height":500
+  }
+
+  combinedChart = {
+    "title":"Combined Price in given range for ",
+    "type":ChartType.LineChart,
+    "data":[
+      ["2000-01-01T00:00:00",0,0]
+    ],
+    "columnNames":['Date', 'Price 1','Price 2'],
+    "options":{},
+    "width":1500,
+    "height":500
+  }
+  combinedCharts:boolean = false;
+
   ngOnInit(): void {
     if(sessionStorage.getItem("session") == null){
       this.router.navigate(['/users']);
     }
     this.auth = JSON.parse(sessionStorage.getItem("session")!);
     this.usernameUser = this.auth!.username;
+    
     this.getIPOs();
     
   } 
@@ -87,8 +132,48 @@ export class CompanyComponent implements OnInit {
     this.companyService.getSectorData(this.companyCode).subscribe((data:Sector[])=>this.sector = data);
   }
 
+  combineChart(){
+    console.log(Math.max(this.chart.data.length,this.chart2.data.length));
+    
+    for(let i = 0;i < Math.max(this.chart.data.length,this.chart2.data.length);i++){
+      this.combinedChart.data.push([this.chart.data[i][0],this.chart.data[i][1],100]);
+    }
+
+  }
+
+  setCharts(data:Stock[],nm:boolean){
+
+    if(nm)
+    {
+      this.stock = data;
+      // Format date-price
+      var tempData:any = [];
+
+      for(let i = 0;i < this.stock.length;i++)
+        tempData.push([this.stock[i].dateTime,this.stock[i].price]);
+      
+      this.chart.data = tempData;
+      
+    }
+    else{
+      this.stock2 = data;
+      var tempData:any = [];
+
+      for(let i = 0;i < this.stock2.length;i++)
+        tempData.push([this.stock2[i].dateTime,this.stock2[i].price]);
+      
+      this.chart2.data = tempData;
+      this.combineChart();
+    }
+  }
+
   getPeriodData(){
-    this.companyService.getPeriodData(this.companyCode,this.fromTime,this.toTime,this.period,this.exchangeID).subscribe((data:Stock[])=>this.stock = data);
+    this.companyService.getPeriodData(this.companyCode,this.fromTime,this.toTime,this.period,this.exchangeID).subscribe((data:Stock[])=>this.setCharts(data,true));
+  }
+
+  getPeriodData2(){
+    this.companyService.getPeriodData(this.companyCode,this.fromTime,this.toTime,this.period,this.exchangeID).subscribe((data:Stock[])=>this.setCharts(data,true));
+    this.companyService.getPeriodData(this.companyCode2,this.fromTime2,this.toTime2,this.period,this.exchangeID).subscribe((data:Stock[])=>this.setCharts(data,false));
   }
 
   startPagination(data:IPO[]){

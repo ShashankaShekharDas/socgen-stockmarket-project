@@ -94,7 +94,7 @@
             <form action="">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="code">ID:</span>
-                    <input type="text" [(ngModel)]="deleteDirectorIndex" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
+                    <input type="number" [(ngModel)]="deleteDirectorIndex" class="form-control" placeholder="Company Code" aria-label="code"  maxlength="5" name="code" required>
                 </div>
                 <button class="btn btn-primary" (click)="deleteCompany()" >Press me to delete</button>
 

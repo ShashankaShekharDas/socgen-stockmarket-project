@@ -7,6 +7,9 @@
             <button class="nav-link" id="getPeriod-tab" data-bs-toggle="pill" data-bs-target="#getPeriod" type="button" role="tab" aria-controls="getPeriod" aria-selected="true">Get Period Data</button>
         </li>
         <li class="nav-item" role="presentation">
+            <button class="nav-link" id="comparePeriod-tab" data-bs-toggle="pill" data-bs-target="#comparePeriod" type="button" role="tab" aria-controls="comparePeriod" aria-selected="true">Compare Period Data</button>
+        </li>
+        <li class="nav-item" role="presentation">
             <button class="nav-link" id="viewIPO-tab" data-bs-toggle="pill" data-bs-target="#viewIPO" type="button" role="tab" aria-controls="viewIPO" aria-selected="true">View IPOs</button>
         </li>
         
@@ -106,6 +109,106 @@
             
             </form>
             
+                    <google-chart
+                        [title]="chart.title"
+                        [type] = "chart.type"
+                        [data]="chart.data"
+                        [columns]="chart.columnNames"
+                        [options]="chart.options"
+                        [width]="chart.width"
+                        [height]="chart.height"
+                        *ngIf="stock.length != 0"
+                        >
+                    </google-chart>
+        </div>
+        <div class="tab-pane fade" id="comparePeriod" role="tabpanel" aria-labelledby="comparePeriod-tab">
+            <form action="">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Code:</span>
+                    <input type="number" [(ngModel)]="companyCode" class="form-control" placeholder="First Company Code" aria-label="code" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="exchange">Exchange ID:</span>
+                    <input type="text" [(ngModel)]="exchangeID" class="form-control" placeholder="Exchange ID" aria-label="exchange" name="exchange" required>
+                </div>
+
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="fromDate">From Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="fromTime" class="form-control" placeholder="From Date Time" aria-label="fromDate" name="fromDate" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="toDate">To Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="toTime" class="form-control" placeholder="To Date Time" aria-label="toDate" name="toDate" required>
+                </div>
+
+
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="code">Second Code:</span>
+                    <input type="number" [(ngModel)]="companyCode2" class="form-control" placeholder="Second Company Code" aria-label="code" name="code" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="exchange">Second Exchange ID:</span>
+                    <input type="text" [(ngModel)]="exchangeID2" class="form-control" placeholder="Exchange ID" aria-label="exchange" name="exchange" required>
+                </div>
+
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="fromDate">From Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="fromTime2" class="form-control" placeholder="From Date Time" aria-label="fromDate" name="fromDate" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="toDate">To Date Time:</span>
+                    <input type="datetime-local" [(ngModel)]="toTime2" class="form-control" placeholder="To Date Time" aria-label="toDate" name="toDate" required>
+                </div>
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="period">Periodicity:</span>
+                    <input type="number" [(ngModel)]="period" class="form-control" placeholder="Periodicity" aria-label="period" name="period" required>
+                </div>
+
+                <button class="btn btn-primary" (click) = "getPeriodData2()">Press to me get data</button>
+            
+            </form>
+
+            <button type="button" class="btn btn-info" (click) = "combinedCharts=!combinedCharts" *ngIf="stock.length != 0 and stock2.length != 0">{{combinedCharts==true?'Seperate Charts':'Combine Charts'}}</button>
+
+            <div *ngIf="!combinedCharts">
+                    <google-chart
+                        [title]="chart.title"
+                        [type] = "chart.type"
+                        [data]="chart.data"
+                        [columns]="chart.columnNames"
+                        [options]="chart.options"
+                        [width]="chart.width"
+                        [height]="chart.height"
+                        *ngIf="stock.length != 0"
+                        >
+                    </google-chart>
+
+                    <google-chart
+                        [title]="chart2.title"
+                        [type] = "chart2.type"
+                        [data]="chart2.data"
+                        [columns]="chart2.columnNames"
+                        [options]="chart2.options"
+                        [width]="chart2.width"
+                        [height]="chart2.height"
+                        *ngIf="stock2.length != 0"
+                        >
+                    </google-chart>
+            </div>
+
+            <div *ngIf="combinedCharts">
+                <google-chart
+                [title]="combinedChart.title"
+                [type] = "combinedChart.type"
+                [data]="combinedChart.data"
+                [columns]="combinedChart.columnNames"
+                [options]="combinedChart.options"
+                [width]="combinedChart.width"
+                [height]="combinedChart.height"
+                >
+            </google-chart>
+            </div>
+
         </div>
         <div class="tab-pane fade" id="viewIPO" role="tabpanel" aria-labelledby="viewIPO-tab">
             

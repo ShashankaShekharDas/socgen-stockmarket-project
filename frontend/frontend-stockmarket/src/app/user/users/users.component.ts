@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
 
   auth?:UserAuth;
   username:string = "";
-  password:string = "";
+  passWord:string = "";
   constructor(private router:Router,private updateDetails:UpdateDetailsService) { }
 
   ngOnInit(): void {
@@ -26,8 +26,9 @@ export class UsersComponent implements OnInit {
   }
 
   updatePassword(){
-    this.updateDetails.updatePassword(this.username,this.password).subscribe(data=>console.log(data));
+    this.updateDetails.updatePassword(this.username,this.passWord).subscribe(data=>console.log(data));
   }
 
+  
 
 }

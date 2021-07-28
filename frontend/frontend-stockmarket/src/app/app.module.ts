@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GoogleChartsModule } from 'angular-google-charts';
 
+
 import { AppComponent } from './app.component';
 import { ManageExchangeComponent } from './admin/manage-exchange/manage-exchange.component';
 import { ManageCompanyComponent } from './admin/manage-company/manage-company.component';
@@ -28,12 +29,11 @@ import { LogoutComponent } from './user/logout/logout.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgApexchartsModule,
-    GoogleChartsModule
-    
+    GoogleChartsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

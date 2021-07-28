@@ -15,6 +15,7 @@ const routes:Routes = [
   {path:'manageExchange',component:ManageExchangeComponent},
   {path:'company',component:CompanyComponent},
   {path:'',component:LoginComponent},
+  {path:'login',component:LoginComponent},
   {path:'users',component:UsersComponent},
   {path:"logout",component:LogoutComponent}
 ];

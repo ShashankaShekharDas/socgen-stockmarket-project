@@ -6,7 +6,7 @@ import { stringify } from '@angular/compiler/src/util';
   providedIn: 'root'
 })
 export class ManageExchangeService {
-  url:string = "http://localhost:8080/exchange/exchange/";
+  url:string = "http://localhost:8090/exchange/exchange/";
 
   constructor(private http:HttpClient) { }
   addExchangeService(id:string,name:string,brief:string,remarks:string)
