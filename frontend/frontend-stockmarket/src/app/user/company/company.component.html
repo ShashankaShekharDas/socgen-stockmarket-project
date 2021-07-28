@@ -17,7 +17,7 @@
 
 
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="companyDetails" role="tabpanel" aria-labelledby="companyDetails-tab">
+        <div class="tab-pane fade show active mt-4" id="companyDetails" role="tabpanel" aria-labelledby="companyDetails-tab">
             <form action="">
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text" id="code">Code:</span>
@@ -25,15 +25,17 @@
                 </div>
                 <button class="btn btn-primary" (click) = "getCompanyData()">Press to me get data</button>
             </form>
-            <div class="" *ngIf="companyDetails.name!='X'">
+            <div class=" mt-4" *ngIf="companyDetails.name!='X'">
                 <h3>Company Details</h3>
-                <table class="table" >
-                    <thead>
-                        <th scope="col">Company Code</th>
-                        <th scope="col">Company Name</th>
-                        <th scope="col">Company Turnover</th>
-                        <th scope="col">Company CEO</th>
-                        <th scope="col">Company About</th>
+                <table class="table table-bordered mt-4" >
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Company Code</th>
+                            <th scope="col">Company Name</th>
+                            <th scope="col">Company Turnover</th>
+                            <th scope="col">Company CEO</th>
+                            <th scope="col">Company About</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
@@ -46,12 +48,14 @@
                     </tbody>
                 </table>
             </div>
-            <div class="" *ngIf="director.length > 0 ">
+            <div class="mt-4" *ngIf="director.length > 0 ">
                 <h3>Director Details</h3>
-                <table class="table" >
+                <table class="table mt-4 table-bordered" >
                     <thead>
-                        <th scope="col">#</th>
-                        <th scope="col">Director Name</th>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Director Name</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let dr of director; let i = index" [attr.data-index]="i">
@@ -61,14 +65,16 @@
                     </tbody>
                 </table>
             </div>
-            <div class="" *ngIf="sector.length > 0 ">
+            <div class=" mt-4" *ngIf="sector.length > 0 ">
                 <h3>Sector Details</h3>
-                <table class="table" >
+                <table class="mt-4 table table-bordered" >
                     <thead>
-                        <th scope="col">#</th>
-                        <th scope="col">Sector ID</th>
-                        <th scope="col">Sector Name</th>
-                        <th scope="col">Sector About</th>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Sector ID</th>
+                            <th scope="col">Sector Name</th>
+                            <th scope="col">Sector About</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let sr of sector; let i = index" [attr.data-index]="i">

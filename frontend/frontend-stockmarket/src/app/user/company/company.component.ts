@@ -63,7 +63,7 @@ export class CompanyComponent implements OnInit {
   // Charts
   // Data in date,value format
   chart = {
-    "title":"Price in given range for",
+    "title":"Price for given stock",
     "type":ChartType.LineChart,
     "data":[
       ["test",1]
@@ -74,7 +74,7 @@ export class CompanyComponent implements OnInit {
     "height":500
   }
   chart2 = {
-    "title":"Price in given range for",
+    "title":"Price for given stock",
     "type":ChartType.LineChart,
     "data":[
       ["test",1]
@@ -86,7 +86,7 @@ export class CompanyComponent implements OnInit {
   }
 
   combinedChart = {
-    "title":"Combined Price in given range for ",
+    "title":"Combined Price for stocks ",
     "type":ChartType.LineChart,
     "data":[
       ["2000-01-01T00:00:00",0,0]

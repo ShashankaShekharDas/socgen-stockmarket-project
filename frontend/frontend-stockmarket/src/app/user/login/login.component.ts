@@ -28,7 +28,10 @@ export class LoginComponent implements OnInit {
   }
   storeSession(data:UserAuth){
     sessionStorage.setItem("session",JSON.stringify(data));
-    this.router.navigate(['/users']);
+    if(data.admin)
+      this.router.navigate(['/manageCompany']);
+    else
+      this.router.navigate(['/company']);
   }
 
   authenticate(){

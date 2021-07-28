@@ -95,7 +95,7 @@ export class ManageCompanyComponent implements OnInit {
   }
 
   updateIPODb(){
-
+    this.companyService.updateIPOService(this.updateIPO).subscribe(data=>console.log(data));
   }
 
   addDirector(){
