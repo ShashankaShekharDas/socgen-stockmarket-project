@@ -37,7 +37,7 @@ public class CompanyDetailsTest {
     @Test
     public void getCompanyDetailsTests(){
 
-//        Write new tests
+
 
     }
 
