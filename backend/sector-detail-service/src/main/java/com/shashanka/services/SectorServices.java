@@ -2,9 +2,13 @@ package com.shashanka.services;
 
 import com.shashanka.dtos.CompanySectorDTO;
 import com.shashanka.dtos.StockDTO;
+import com.shashanka.entities.CompanySector;
 import com.shashanka.entities.Sector;
+import com.shashanka.repositories.CompanySectorRepository;
 import com.shashanka.repositories.SectorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -21,8 +25,10 @@ public class SectorServices {
     SectorRepository sectorRepository;
     @Autowired
     JdbcTemplate jdbcTemplate;
+    @Autowired
+    CompanySectorRepository companySectorRepository;
 
-    public Optional<Sector> getCompany(String sectorId) {
+    public Optional<Sector> getSector(String sectorId) {
         return sectorRepository.findById(sectorId);
     }
 
@@ -54,5 +60,28 @@ public class SectorServices {
                     periodicStockQuery.add(stockQuery.get(i));
         }
         return periodicStockQuery;
+    }
+
+    public ResponseEntity addSector(Sector sector)
+    {
+        try {
+            sectorRepository.save(sector);
+            return ResponseEntity.ok("Sector Added succesfully");
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Couldnt Add Sector");
+        }
+    }
+
+    public ResponseEntity getCompany(String sectorID){
+        try {
+            List<CompanySector> allBySectorId = companySectorRepository.findAllBySectorId(sectorRepository.findById(sectorID).get());
+            return ResponseEntity.ok(allBySectorId);
+        }
+        catch (Exception e)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such sector or company in sector");
+        }
     }
 }

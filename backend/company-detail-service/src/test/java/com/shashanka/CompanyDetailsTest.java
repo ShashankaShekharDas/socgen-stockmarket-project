@@ -1,11 +1,11 @@
 package com.shashanka;
 
-import com.shashanka.controller.IPOController;
+import com.shashanka.controllers.IPOController;
 import com.shashanka.repositories.CompanyRepository;
 import com.shashanka.repositories.IPORepository;
 import com.shashanka.repositories.StockExchangeRepository;
-import com.shashanka.service.CompanyDetailService;
-import com.shashanka.service.IPOService;
+import com.shashanka.services.CompanyDetailService;
+import com.shashanka.services.IPOService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class CompanyDetailsTest {
     @Test
     public void getCompanyDetailsTests(){
 
-//        Write new tests
+
 
     }
 

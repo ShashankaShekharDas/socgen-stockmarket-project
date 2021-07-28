@@ -1,0 +1,9 @@
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Import Excel File to read data</label>
+            <input class="form-control" (change)="addFiles($event)" type="file" id="formFile" name="formFile" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          </div>
+          <button type="button" (click)="addFile()" class="btn btn-primary">Import Excel</button>
+    </form>
+</div>

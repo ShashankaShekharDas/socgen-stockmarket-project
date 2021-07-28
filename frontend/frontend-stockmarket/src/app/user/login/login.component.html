@@ -1,0 +1,14 @@
+<div class="container" style="border: 1px solid black;border-radius: 25px;width: 50vw;text-align: center;">
+    <h3>Login</h3>
+    <form action="">
+        <div class="input-group flex-nowrap mt-5">
+            <span class="input-group-text" id="user">Username:</span>
+            <input type="text" [(ngModel)]="user.username" class="form-control" placeholder="Username" aria-label="user" name="user" required>
+        </div>
+        <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="pw">Password:</span>
+            <input type="password" [(ngModel)]="user.password" class="form-control" placeholder="Password" aria-label="pw" name="pw" required>
+        </div>
+        <button type="button" (click) = "authenticate()" class="btn btn-primary mt-4 mb-4">Press me to Login</button>
+    </form>
+</div>

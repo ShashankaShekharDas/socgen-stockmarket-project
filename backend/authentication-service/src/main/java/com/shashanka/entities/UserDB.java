@@ -19,7 +19,7 @@ public class UserDB {
     @Column(length = 20)
     private String userName;
 
-    @Column(length = 20)
+    @Column(length = 100)
     private String password;
 
     @Column(length = 7)

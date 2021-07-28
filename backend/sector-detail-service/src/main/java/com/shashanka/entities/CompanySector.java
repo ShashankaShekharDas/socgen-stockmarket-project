@@ -13,14 +13,14 @@ import javax.persistence.*;
 @Table(name = "COMPANYSECTOR")
 public class CompanySector {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "name")
-    private Company companyName;
+    @JoinColumn(referencedColumnName = "code")
+    private Company company;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(referencedColumnName = "Id")
     private Sector sectorId;
 }

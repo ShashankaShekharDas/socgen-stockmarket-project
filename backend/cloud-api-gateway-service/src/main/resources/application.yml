@@ -1,10 +1,15 @@
 server:
   port: 8125
 
-
 spring:
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:4200"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: authentication-service
           uri: lb://authentication-service
@@ -23,6 +28,6 @@ spring:
           predicates:
             - Path=/sector/**
         - id: stock-exchange-service
-          uri: lb://stock-exchange-service
+          uri: "http://localhost:8080"
           predicates:
             - Path=/exchange/**
